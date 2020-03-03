@@ -14,7 +14,7 @@ df_confirmed = df_confirmed.set_index("Date")
 df_deaths = df_deaths.set_index("Date")
 df_confirmed["Type"] = "Confirmed"
 df_deaths["Type"] = "Death"
-df_joined = pd.concat([df_confirmed, df_deaths]).set_index(["Date","Type"]).stack().reset_index()
+df_joined = pd.concat([df_confirmed, df_deaths]).set_index(["Date","Type"]).stack()
 df_joined["Value"] = df_joined[0]
 df_joined["Region"] = df_joined["level_2"]
 for row in df_joined.pivot_table(index=["Date","Region"],columns="Type",values="Value").reset_index().to_dict("records"):
