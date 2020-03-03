@@ -12,7 +12,7 @@ df_confirmed = pd.read_csv("france_coronavirus_time_series-confirmed.csv", sep="
 df_deaths = pd.read_csv("france_coronavirus_time_series-deaths.csv", sep=";")
 df_confirmed["Type"] = "Confirmed"
 df_deaths["Type"] = "Death"
-df_joined = pd.concat([df_confirmed, df_deaths]).set_index(["Date","Type"]).stack()
+df_joined = pd.concat([df_confirmed, df_deaths]).set_index(["Date","Type"]).stack().reset_index()
 df_joined["Value"] = df_joined[0]
 df_joined["Region"] = df_joined["level_2"]
 for row in df_joined.pivot_table(index=["Date","Region"],columns="Type",values="Value").reset_index().to_dict("records"):
