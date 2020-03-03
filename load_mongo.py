@@ -10,8 +10,6 @@ france_covid19 = db.france_covid19
 
 df_confirmed = pd.read_csv("france_coronavirus_time_series-confirmed.csv", sep=";")
 df_deaths = pd.read_csv("france_coronavirus_time_series-deaths.csv", sep=";")
-df_confirmed = df_confirmed.set_index("Date")
-df_deaths = df_deaths.set_index("Date")
 df_confirmed["Type"] = "Confirmed"
 df_deaths["Type"] = "Death"
 df_joined = pd.concat([df_confirmed, df_deaths]).set_index(["Date","Type"]).stack()
