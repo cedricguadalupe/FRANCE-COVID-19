@@ -25,4 +25,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: /home/github/load_mongo.py
+        script: |
+          chmod u+x /home/github/load_mongo.py
+          /home/github/load_mongo.py
