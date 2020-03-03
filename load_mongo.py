@@ -2,6 +2,7 @@
 import pandas as pd
 from pymongo import MongoClient
 from datetime import datetime
+import numpy as np
 
 
 client = MongoClient()
@@ -15,7 +16,7 @@ df_deaths["Type"] = "Death"
 df_joined = pd.concat([df_confirmed, df_deaths]).set_index(["Date","Type"]).stack().reset_index()
 df_joined["Value"] = df_joined[0]
 df_joined["Region"] = df_joined["level_2"]
-for row in df_joined.pivot_table(index=["Date","Region"],columns="Type",values="Value").reset_index().to_dict("records"):
+for row in df_joined.pivot_table(index=["Date","Region"],columns="Type",values="Value").replace({np.NAN: None}).reset_index().to_dict("records"):
     date_value = datetime.strptime(row["Date"], "%d/%m/%Y")
     france_covid19.update({
         "Date": date_value,
