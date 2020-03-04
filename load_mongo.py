@@ -17,7 +17,7 @@ df_deaths["Type"] = "Death"
 df_joined = pd.concat([df_confirmed, df_deaths]).set_index(["Date","Type"]).stack().reset_index()
 df_joined["Value"] = df_joined[0]
 df_joined["Region"] = df_joined["level_2"]
-df_joined["Region_Code"] = df_joined["Region"].str.upper().apply(unidecode.unidecode)
+df_joined["Region_Code"] = df_joined["Region"].str.upper().strip().apply(unidecode.unidecode)
 for row in df_joined.pivot_table(index=["Date","Region","Region_Code"],columns="Type",values="Value").replace({np.NAN: None}).reset_index().to_dict("records"):
     date_value = datetime.strptime(row["Date"], "%d/%m/%Y")
     france_covid19.update({
