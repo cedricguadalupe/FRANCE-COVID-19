@@ -30,5 +30,6 @@ for row in df_joined.pivot_table(index=["Date", "Region", "Region_Code"], column
         "Region": row["Region"],
         "Region_Code": row["Region_Code"],
         "Confirmed": row["Confirmed"],
+        "Recovered": row["Recovered"],
         "Death": row["Death"]
     }, upsert=True)
