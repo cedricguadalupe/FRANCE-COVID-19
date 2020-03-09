@@ -16,7 +16,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        source: "france_coronavirus_time_series-confirmed.csv,france_coronavirus_time_series-deaths.csv,load_mongo.py"
+        source: "france_coronavirus_time_series-confirmed.csv,france_coronavirus_time_series-deaths.csv,france_coronavirus_time_series-recovered.csv,load_mongo.py"
         target: "/home/github"
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
