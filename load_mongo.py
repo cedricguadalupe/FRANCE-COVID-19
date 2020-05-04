@@ -9,6 +9,7 @@ import unidecode
 client = MongoClient()
 db = client.coronavirus
 france_covid19 = db.france_covid19
+france_covid19.remove({})
 
 df_confirmed = pd.read_csv("france_coronavirus_time_series-confirmed.csv", sep=",")
 df_deaths = pd.read_csv("france_coronavirus_time_series-deaths.csv", sep=",")
